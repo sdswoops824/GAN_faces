@@ -1,16 +1,23 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import numpy as np
+from numpy import random
+from matplotlib import pyplot as plt
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# Drawing function
+def view_samples(samples, m, n):
+    fig, axes = plt.subplots(figsize=(10, 10), nrows=m, ncols=n, sharey=True, sharex=True)
+    for ax, img in zip(axes.flatten(), samples):
+        ax.xaxis.set_visible(False)
+        ax.yaxis.set_visible(False)
+        im = ax.imshow(1-img.reshape((2,2)), cmap='Greys_r')
+    return fig, axes
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+# Examples of faces
+faces = [np.array([1, 0, 0, 1]),
+         np.array([0.9, 0.1, 0.2, 0.8]),
+         np.array([0.9, 0.2, 0.1, 0.8]),
+         np.array([0.8, 0.1, 0.2, 0.9]),
+         np.array([0.8, 0.2, 0.1, 0.9])]
+
+view_samples(faces, 1, 4)
